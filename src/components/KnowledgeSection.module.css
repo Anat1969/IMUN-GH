@@ -1,0 +1,15 @@
+.box {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-inline-start: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.para {
+  color: var(--color-text);
+}
+
+.para + .para {
+  margin-block-start: var(--space);
+}

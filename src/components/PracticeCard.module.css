@@ -1,0 +1,124 @@
+.card {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.counter {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-block-end: var(--space);
+}
+
+.situation {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.prompt {
+  margin-block-start: var(--space-xs);
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
+.textarea {
+  width: 100%;
+  margin-block-start: var(--space);
+  padding: var(--space);
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.primary,
+.ghost {
+  display: block;
+  width: 100%;
+  margin-block-start: var(--space);
+  padding-block: 14px;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: filter 0.15s ease, background 0.15s ease;
+}
+
+.primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+@media (hover: hover) {
+  .primary:hover {
+    filter: brightness(1.08);
+  }
+  .ghost:hover {
+    background: var(--color-surface-2);
+  }
+}
+
+.example {
+  margin-block-start: var(--space);
+  padding: var(--space);
+  background: var(--color-primary);
+  border-inline-start: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.exampleLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-accent);
+  margin-block-end: var(--space-xs);
+}
+
+.exampleText {
+  line-height: 1.6;
+}
+
+.empty {
+  padding: var(--space-lg);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.done {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.doneTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.doneText {
+  margin-block-start: var(--space-xs);
+  color: var(--color-text-muted);
+}

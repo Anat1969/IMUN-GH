@@ -1,0 +1,12 @@
+.section {
+  margin-block-start: var(--space-xl);
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-accent);
+  margin-block-end: var(--space);
+  padding-inline-start: 2px;
+}

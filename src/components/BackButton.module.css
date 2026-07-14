@@ -1,0 +1,17 @@
+.back {
+  display: inline-block;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding-block: 6px;
+}
+
+.back::before {
+  content: "→ ";
+}
+
+@media (hover: hover) {
+  .back:hover {
+    color: var(--color-text);
+  }
+}
