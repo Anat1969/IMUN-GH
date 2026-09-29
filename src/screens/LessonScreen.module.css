@@ -1,9 +1,28 @@
 .header {
+  position: relative;
   margin-block-start: var(--space);
 }
 
-.header > :first-child {
-  margin-block-end: var(--space-lg);
+/* עם תמונת נושא: הכותרת הופכת לכרטיס והתמונה דוהה אל מתחת לטקסט */
+.header:has([data-filled]) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.header > :not(:first-child) {
+  position: relative;
+  z-index: 1;
+}
+
+.header:has([data-filled]) .title {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .title {
@@ -29,27 +48,23 @@
 }
 
 .principle {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space);
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+  --slot-width: 40%;
   padding: var(--space-lg);
+  padding-inline-end: 34%;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
 }
 
 .principleText {
-  flex: 1;
+  position: relative;
+  z-index: 1;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.5;
-}
-
-@media (max-width: 420px) {
-  .principle > :last-child {
-    width: 96px;
-    height: 96px;
-  }
 }
 
 @media (min-width: 640px) {

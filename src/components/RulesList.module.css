@@ -7,13 +7,19 @@
 
 .item {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: start;
   gap: var(--space);
   padding: var(--space);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  min-height: 88px;
+  /* מקום לתמונה בצד; הטקסט נכנס מעט לאזור הדהייה */
+  --slot-width: 34%;
+  padding-inline-end: 28%;
 }
 
 .num {
@@ -27,6 +33,12 @@
   color: #fff;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.num,
+.text {
+  position: relative;
+  z-index: 1;
 }
 
 .text {

@@ -37,7 +37,7 @@ export default function LessonScreen() {
       <LayerSection label="עיקרון">
         <div className={styles.principle}>
           <p className={styles.principleText}>{lesson.principle}</p>
-          <ImageSlot storageKey={`lesson-${lesson.id}-principle`} variant="medium" label="תמונה לעיקרון" />
+          <ImageSlot storageKey={`lesson-${lesson.id}-principle`} label="תמונה לעיקרון" />
         </div>
       </LayerSection>
 

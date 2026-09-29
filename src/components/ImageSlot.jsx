@@ -3,7 +3,7 @@ import { useStoredImage } from '../hooks/useStoredImage.js'
 import styles from './ImageSlot.module.css'
 
 // מסגרת תמונה: לחיצה לבחירת קובץ, גרירה ושחרור, או הדבקה (Ctrl+V) כשהמסגרת בפוקוס.
-export default function ImageSlot({ storageKey, variant = 'thumb', label = 'הוספת תמונה' }) {
+export default function ImageSlot({ storageKey, variant = 'side', label = 'הוספת תמונה' }) {
   const { url, save, remove } = useStoredImage(storageKey)
   const inputRef = useRef(null)
   const [dragging, setDragging] = useState(false)
@@ -55,6 +55,7 @@ export default function ImageSlot({ storageKey, variant = 'thumb', label = 'הו
   return (
     <div
       className={className}
+      data-filled={url ? '' : undefined}
       tabIndex={0}
       role="button"
       aria-label={url ? 'הגדלת תמונה' : label}
@@ -95,7 +96,7 @@ export default function ImageSlot({ storageKey, variant = 'thumb', label = 'הו
       ) : (
         <div className={styles.placeholder}>
           <span className={styles.plus}>{busy ? '…' : '+'}</span>
-          {variant !== 'thumb' && <span className={styles.hint}>{label}</span>}
+          <span className={styles.hint}>{variant === 'cover' ? label : 'תמונה'}</span>
         </div>
       )}
 
