@@ -131,6 +131,17 @@
   background: var(--color-accent);
 }
 
+.busy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 1.4rem;
+}
+
 .lightbox {
   position: fixed;
   inset: 0;

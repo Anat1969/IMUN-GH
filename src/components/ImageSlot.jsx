@@ -3,6 +3,7 @@ import { useStoredImage } from '../hooks/useStoredImage.js'
 import styles from './ImageSlot.module.css'
 
 // מסגרת תמונה: לחיצה לבחירת קובץ, גרירה ושחרור, או הדבקה (Ctrl+V) כשהמסגרת בפוקוס.
+// עריכה רק למנהלת; מבקרים רואים את התמונה בלבד, ומסגרת ריקה לא מוצגת להם בכלל.
 export default function ImageSlot({
   storageKey,
   variant = 'side',
@@ -10,7 +11,7 @@ export default function ImageSlot({
   className,
   onFilledClick,
 }) {
-  const { url, save, remove } = useStoredImage(storageKey)
+  const { url, canEdit, save, remove } = useStoredImage(storageKey)
   const inputRef = useRef(null)
   const [dragging, setDragging] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -21,8 +22,19 @@ export default function ImageSlot({
     setBusy(true)
     try {
       await save(file)
+    } catch {
+      alert('העלאת התמונה נכשלה. נסי שוב, או היכנסי מחדש בדף /admin.')
     } finally {
       setBusy(false)
+    }
+  }
+
+  async function handleRemove() {
+    if (!confirm('למחוק את התמונה?')) return
+    try {
+      await remove()
+    } catch {
+      alert('המחיקה נכשלה. נסי שוב.')
     }
   }
 
@@ -50,6 +62,20 @@ export default function ImageSlot({
     }
   }
 
+  if (!url && !canEdit) return null
+
+  const editHandlers = canEdit
+    ? {
+        onPaste,
+        onDragOver: (e) => {
+          e.preventDefault()
+          setDragging(true)
+        },
+        onDragLeave: () => setDragging(false),
+        onDrop,
+      }
+    : {}
+
   const classes = [
     styles.slot,
     styles[variant],
@@ -70,13 +96,7 @@ export default function ImageSlot({
       title={url ? undefined : `${label} — לחיצה, גרירה או הדבקה`}
       onClick={() => (url ? openFilled() : pick())}
       onKeyDown={onKeyDown}
-      onPaste={onPaste}
-      onDragOver={(e) => {
-        e.preventDefault()
-        setDragging(true)
-      }}
-      onDragLeave={() => setDragging(false)}
-      onDrop={onDrop}
+      {...editHandlers}
     >
       <input
         ref={inputRef}
@@ -92,14 +112,17 @@ export default function ImageSlot({
       {url ? (
         <>
           <img className={styles.img} src={url} alt="" />
-          <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
-            <button type="button" className={styles.action} onClick={pick} aria-label="החלפת תמונה" title="החלפה">
-              ⟳
-            </button>
-            <button type="button" className={styles.action} onClick={remove} aria-label="מחיקת תמונה" title="מחיקה">
-              ✕
-            </button>
-          </div>
+          {canEdit && (
+            <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
+              <button type="button" className={styles.action} onClick={pick} aria-label="החלפת תמונה" title="החלפה">
+                ⟳
+              </button>
+              <button type="button" className={styles.action} onClick={handleRemove} aria-label="מחיקת תמונה" title="מחיקה">
+                ✕
+              </button>
+            </div>
+          )}
+          {busy && <div className={styles.busy}>…</div>}
         </>
       ) : (
         <div className={styles.placeholder}>
