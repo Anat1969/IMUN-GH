@@ -1,6 +1,7 @@
 import { lessons } from '../data/loadLessons.js'
 import { useLessonStatus } from '../context/LessonStatusContext.jsx'
 import LessonCard from '../components/LessonCard.jsx'
+import ImageSlot from '../components/ImageSlot.jsx'
 import styles from './HomeScreen.module.css'
 
 export default function HomeScreen() {
@@ -9,6 +10,7 @@ export default function HomeScreen() {
   return (
     <main className="container">
       <header className={styles.header}>
+        <ImageSlot storageKey="home-cover" variant="cover" label="הוספת תמונה לדף הראשי" />
         <h1 className={styles.title}>שחרר את הכריזמה</h1>
         <p className={styles.tagline}>אימון מעשי ליכולות ורבליות — שיעור אחר שיעור</p>
       </header>

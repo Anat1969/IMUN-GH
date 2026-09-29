@@ -3,7 +3,13 @@ import { useStoredImage } from '../hooks/useStoredImage.js'
 import styles from './ImageSlot.module.css'
 
 // מסגרת תמונה: לחיצה לבחירת קובץ, גרירה ושחרור, או הדבקה (Ctrl+V) כשהמסגרת בפוקוס.
-export default function ImageSlot({ storageKey, variant = 'side', label = 'הוספת תמונה' }) {
+export default function ImageSlot({
+  storageKey,
+  variant = 'side',
+  label = 'הוספת תמונה',
+  className,
+  onFilledClick,
+}) {
   const { url, save, remove } = useStoredImage(storageKey)
   const inputRef = useRef(null)
   const [dragging, setDragging] = useState(false)
@@ -21,6 +27,7 @@ export default function ImageSlot({ storageKey, variant = 'side', label = 'הו�
   }
 
   const pick = () => inputRef.current?.click()
+  const openFilled = () => (onFilledClick ? onFilledClick() : setZoomed(true))
 
   function onDrop(e) {
     e.preventDefault()
@@ -39,28 +46,29 @@ export default function ImageSlot({ storageKey, variant = 'side', label = 'הו�
   function onKeyDown(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
-      url ? setZoomed(true) : pick()
+      url ? openFilled() : pick()
     }
   }
 
-  const className = [
+  const classes = [
     styles.slot,
     styles[variant],
     url ? styles.filled : styles.empty,
     dragging && styles.dragging,
+    className,
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
     <div
-      className={className}
+      className={classes}
       data-filled={url ? '' : undefined}
       tabIndex={0}
       role="button"
-      aria-label={url ? 'הגדלת תמונה' : label}
+      aria-label={url ? (onFilledClick ? undefined : 'הגדלת תמונה') : label}
       title={url ? undefined : `${label} — לחיצה, גרירה או הדבקה`}
-      onClick={() => (url ? setZoomed(true) : pick())}
+      onClick={() => (url ? openFilled() : pick())}
       onKeyDown={onKeyDown}
       onPaste={onPaste}
       onDragOver={(e) => {
