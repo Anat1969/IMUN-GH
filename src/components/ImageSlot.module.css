@@ -5,9 +5,8 @@
   cursor: pointer;
 }
 
-.slot:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: -2px;
+.slot:focus {
+  outline: none;
 }
 
 /* ---- צד של כרטיס ---- */
@@ -20,8 +19,8 @@
 
 .side .img {
   /* RTL: inline-end = שמאל. אטום בקצה, שקוף לכיוון הטקסט */
-  -webkit-mask-image: linear-gradient(to right, #000 35%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 15%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.15) 80%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 15%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.15) 80%, transparent 100%);
 }
 
 /* ---- תמונת נושא (רקע של הכותרת) ---- */
@@ -37,14 +36,12 @@
 
 .cover.empty {
   display: inline-flex;
-  margin-block-end: var(--space);
-  border-radius: var(--radius-pill);
-  border: 1px dashed var(--color-border);
+  margin-block-end: var(--space-xs);
 }
 
 .cover.empty .placeholder {
   flex-direction: row;
-  padding: 6px 14px;
+  gap: 6px;
 }
 
 .cover.empty .plus {
@@ -61,12 +58,8 @@
   width: 100%;
   height: 100%;
   color: var(--color-text-muted);
-  opacity: 0.45;
+  opacity: 0.35;
   transition: opacity 0.15s ease, background 0.15s ease;
-}
-
-.side .placeholder {
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.035), transparent);
 }
 
 .empty:hover .placeholder,
@@ -76,9 +69,8 @@
   color: var(--color-accent);
 }
 
-.side.dragging .placeholder,
-.side.empty:hover .placeholder {
-  background: linear-gradient(to right, rgba(233, 69, 96, 0.14), transparent);
+.side.dragging .placeholder {
+  background: linear-gradient(to right, rgba(233, 69, 96, 0.12), transparent);
 }
 
 .plus {
