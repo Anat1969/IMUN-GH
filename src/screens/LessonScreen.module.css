@@ -2,6 +2,10 @@
   margin-block-start: var(--space);
 }
 
+.header > :first-child {
+  margin-block-end: var(--space-lg);
+}
+
 .title {
   font-size: 1.7rem;
   font-weight: 800;
@@ -25,13 +29,27 @@
 }
 
 .principle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space);
   padding: var(--space-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+}
+
+.principleText {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 420px) {
+  .principle > :last-child {
+    width: 96px;
+    height: 96px;
+  }
 }
 
 @media (min-width: 640px) {

@@ -7,6 +7,7 @@ import LayerSection from '../components/LayerSection.jsx'
 import RulesList from '../components/RulesList.jsx'
 import KnowledgeSection from '../components/KnowledgeSection.jsx'
 import PracticeCard from '../components/PracticeCard.jsx'
+import ImageSlot from '../components/ImageSlot.jsx'
 import styles from './LessonScreen.module.css'
 
 export default function LessonScreen() {
@@ -27,17 +28,21 @@ export default function LessonScreen() {
       <BackButton />
 
       <header className={styles.header}>
+        <ImageSlot storageKey={`lesson-${lesson.id}-cover`} variant="cover" label="הוספת תמונת נושא לשיעור" />
         <h1 className={styles.title}>{lesson.title}</h1>
         {lesson.titleEn && <p className={styles.subtitle}>{lesson.titleEn}</p>}
         <span className={styles.duration}>{lesson.duration}</span>
       </header>
 
       <LayerSection label="עיקרון">
-        <p className={styles.principle}>{lesson.principle}</p>
+        <div className={styles.principle}>
+          <p className={styles.principleText}>{lesson.principle}</p>
+          <ImageSlot storageKey={`lesson-${lesson.id}-principle`} variant="medium" label="תמונה לעיקרון" />
+        </div>
       </LayerSection>
 
       <LayerSection label="כללי פעולה">
-        <RulesList rules={lesson.rules ?? []} />
+        <RulesList rules={lesson.rules ?? []} lessonId={lesson.id} />
       </LayerSection>
 
       {hasKnowledge && (
