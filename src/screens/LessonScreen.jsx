@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
-import { getLessonById } from '../data/loadLessons.js'
+import { getLessonById, workScenariosSection } from '../data/loadLessons.js'
 import { useLessonStatus } from '../context/LessonStatusContext.jsx'
 import BackButton from '../components/BackButton.jsx'
 import LayerSection from '../components/LayerSection.jsx'
@@ -8,6 +8,7 @@ import RulesList from '../components/RulesList.jsx'
 import KnowledgeSection from '../components/KnowledgeSection.jsx'
 import PracticeCard from '../components/PracticeCard.jsx'
 import ImageSlot from '../components/ImageSlot.jsx'
+import WorkScenarios from '../components/WorkScenarios.jsx'
 import styles from './LessonScreen.module.css'
 
 export default function LessonScreen() {
@@ -22,6 +23,7 @@ export default function LessonScreen() {
   if (!lesson) return <Navigate to="/" replace />
 
   const hasKnowledge = Array.isArray(lesson.knowledge) && lesson.knowledge.length > 0
+  const hasWorkScenarios = lesson.workScenarios.length > 0
 
   return (
     <main className="container">
@@ -54,6 +56,12 @@ export default function LessonScreen() {
       <LayerSection label="תרגול">
         <PracticeCard scenarios={lesson.scenarios ?? []} onComplete={handleComplete} />
       </LayerSection>
+
+      {hasWorkScenarios && (
+        <LayerSection label={workScenariosSection.title}>
+          <WorkScenarios items={lesson.workScenarios} section={workScenariosSection} />
+        </LayerSection>
+      )}
     </main>
   )
 }

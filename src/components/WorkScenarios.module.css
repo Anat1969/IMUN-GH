@@ -1,0 +1,70 @@
+.legend {
+  margin-block: calc(-1 * var(--space-xs)) var(--space);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+.card {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.setting {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(233, 69, 96, 0.12);
+  color: var(--color-accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.field {
+  margin-block-start: var(--space);
+}
+
+.label {
+  margin-block-end: 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.labelMuted {
+  opacity: 0.75;
+}
+
+.situation {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.line {
+  padding: var(--space);
+  background: var(--color-primary);
+  border-inline-start: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.pause {
+  color: var(--color-accent);
+  font-weight: 400;
+  padding-inline: 2px;
+}
+
+.avoid {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
