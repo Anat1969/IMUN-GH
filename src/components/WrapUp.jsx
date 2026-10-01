@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styles from './WrapUp.module.css'
 
 // מציין מקום בסוגריים מרובעים ([שם], [א]) מקבל רקע עדין
@@ -14,36 +13,12 @@ function Spoken({ text }) {
   )
 }
 
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text)
-  } catch {
-    const ta = document.createElement('textarea')
-    ta.value = text
-    document.body.appendChild(ta)
-    ta.select()
-    document.execCommand('copy')
-    ta.remove()
-  }
-}
-
-function CopyLine({ text, quote }) {
-  const [copied, setCopied] = useState(false)
-
-  async function onCopy() {
-    await copyText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
-
+function SpokenLine({ text, quote }) {
   return (
     <div className={quote ? `${styles.line} ${styles.quote}` : styles.line}>
       <span className={styles.lineText}>
         <Spoken text={text} />
       </span>
-      <button type="button" className={styles.copy} onClick={onCopy} aria-label={`העתקת המשפט: ${text}`}>
-        {copied ? 'הועתק' : 'העתקה'}
-      </button>
     </div>
   )
 }
@@ -104,7 +79,7 @@ export default function WrapUp({ data, labels }) {
                 <span className={styles.approach}>{o.approach}</span>
                 <div className={styles.lines}>
                   {o.lines.map((l, j) => (
-                    <CopyLine key={j} text={l} quote />
+                    <SpokenLine key={j} text={l} quote />
                   ))}
                 </div>
               </article>
@@ -120,7 +95,7 @@ export default function WrapUp({ data, labels }) {
               <h4 className={styles.move}>{p.move}</h4>
               <div className={styles.lines}>
                 {p.lines.map((l, j) => (
-                  <CopyLine key={j} text={l} />
+                  <SpokenLine key={j} text={l} />
                 ))}
               </div>
             </div>
@@ -140,7 +115,7 @@ export default function WrapUp({ data, labels }) {
                 <p className={styles.instead}>
                   <Spoken text={r.instead} />
                 </p>
-                <CopyLine text={r.say} />
+                <SpokenLine text={r.say} />
               </div>
             ))}
           </div>
