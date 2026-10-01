@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
-import { getLessonById, workScenariosSection } from '../data/loadLessons.js'
+import { getLessonById, workScenariosSection, wrapUpSection } from '../data/loadLessons.js'
 import { useLessonStatus } from '../context/LessonStatusContext.jsx'
 import BackButton from '../components/BackButton.jsx'
 import LayerSection from '../components/LayerSection.jsx'
@@ -9,6 +9,7 @@ import KnowledgeSection from '../components/KnowledgeSection.jsx'
 import PracticeCard from '../components/PracticeCard.jsx'
 import ImageSlot from '../components/ImageSlot.jsx'
 import WorkScenarios from '../components/WorkScenarios.jsx'
+import WrapUp from '../components/WrapUp.jsx'
 import styles from './LessonScreen.module.css'
 
 export default function LessonScreen() {
@@ -60,6 +61,12 @@ export default function LessonScreen() {
       {hasWorkScenarios && (
         <LayerSection label={workScenariosSection.title}>
           <WorkScenarios items={lesson.workScenarios} section={workScenariosSection} />
+        </LayerSection>
+      )}
+
+      {lesson.wrapUp && (
+        <LayerSection label={wrapUpSection.title}>
+          <WrapUp data={lesson.wrapUp} labels={wrapUpSection.labels} />
         </LayerSection>
       )}
     </main>

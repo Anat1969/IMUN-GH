@@ -1,0 +1,241 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+/* ---- התובנה: תמיד גלויה ---- */
+.insight {
+  padding: var(--space-lg);
+  background: linear-gradient(to left, rgba(233, 69, 96, 0.14), rgba(233, 69, 96, 0.03));
+  border: 1px solid rgba(233, 69, 96, 0.35);
+  border-radius: var(--radius);
+}
+
+.kicker {
+  margin-block-end: var(--space-xs);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-accent-strong);
+}
+
+.insightText {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+/* ---- בלוקים מתקפלים ---- */
+.block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  padding: var(--space) var(--space-lg);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+/* סימון פתיחה/סגירה במילים, בלי אייקון */
+.toggle::after {
+  content: 'הצגה';
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.block[open] .toggle::after {
+  content: 'הסתרה';
+}
+
+@media (hover: hover) {
+  .summary:hover .toggle::after {
+    color: var(--color-accent);
+  }
+}
+
+.blockBody {
+  padding: 0 var(--space-lg) var(--space-lg);
+}
+
+.sub {
+  margin-block: var(--space) 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.sub:first-child {
+  margin-block-start: 0;
+}
+
+.cues {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-inline-start: 1.2em;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+/* ---- פתיחת שיחה ---- */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+.card {
+  padding: var(--space);
+  background: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.person {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.approach {
+  display: inline-block;
+  margin-block-start: 6px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(233, 69, 96, 0.12);
+  color: var(--color-accent-strong);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* ---- שורות מדוברות ---- */
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-block-start: var(--space-xs);
+}
+
+.line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: 8px 12px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-sm);
+}
+
+.quote .lineText::before,
+.quote .lineText::after {
+  content: '"';
+  color: var(--color-accent);
+}
+
+.lineText {
+  line-height: 1.55;
+}
+
+.placeholder {
+  padding: 0 2px;
+  border-radius: 4px;
+  background: rgba(169, 169, 192, 0.18);
+}
+
+.copy {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.copy:hover,
+.copy:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+/* ---- נוסחים ---- */
+.phrasing + .phrasing {
+  margin-block-start: var(--space);
+}
+
+.move {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
+/* ---- במקום / אמרי ---- */
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.headRow,
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-xs);
+  align-items: start;
+}
+
+.headRow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.instead {
+  padding-block: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  text-decoration: line-through;
+  text-decoration-color: rgba(233, 69, 96, 0.6);
+}
+
+/* בעמודה הצרה: כפתור ההעתקה יורד מתחת למשפט, כדי שהמשפט יקבל את כל הרוחב */
+.row .line {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-weight: 700;
+}
+
+@media (min-width: 560px) {
+  .row .line {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.row + .row {
+  padding-block-start: var(--space-xs);
+  border-block-start: 1px solid var(--color-border);
+}
